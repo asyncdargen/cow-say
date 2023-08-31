@@ -1,0 +1,4 @@
+cow:
+  alive-ticks: 100
+  speed: .3
+  radius: 3.0

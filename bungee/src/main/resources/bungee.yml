@@ -1,0 +1,5 @@
+main: ru.dargen.cowsay.bungee.CowSayPlugin
+name: CowSay
+version: 1.0
+author: dargen
+api-version: 1.12

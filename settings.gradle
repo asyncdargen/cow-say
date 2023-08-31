@@ -1,0 +1,4 @@
+rootProject.name = 'cow-say'
+
+include 'bungee', 'bukkit'
+
