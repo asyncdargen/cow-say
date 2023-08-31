@@ -24,20 +24,22 @@ object CowSayService {
         runningCows.removeIf {
             val location = it.incrementTicksAndPrepareLocation()
 
-            location.world.spawnParticle(Particle.FLAME, location, 1, .0, .0, .0)
+            it.player.spawnParticle(Particle.FLAME, location, 1, .0, .0, .0, .0)
             it.cow.teleport(location)
 
-            if (it.ticksAlive % 3 == 0) {
-                location.world.playSound(location, Sound.ENTITY_COW_AMBIENT, 1f, 1f)
+            if (it.ticksAlive % 4 == 0) {
+                it.player.playSound(location, Sound.ENTITY_COW_AMBIENT, 1f, 1f)
             }
 
             //взрыв и удаление
             if (it.isFinished) {
                 it.cow.remove()
+
                 (it.player as CraftPlayer)
                     .handle
                     .playerConnection
-                    .sendPacket(it.cow.location.run { PacketPlayOutExplosion(x, y, z, 3f, emptyList(), Vec3D.a) })
+                    .sendPacket(location.run { PacketPlayOutExplosion(x, y, z, 3f, emptyList(), Vec3D.a) })
+                it.player.playSound(location, Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f)
             }
 
             it.isFinished

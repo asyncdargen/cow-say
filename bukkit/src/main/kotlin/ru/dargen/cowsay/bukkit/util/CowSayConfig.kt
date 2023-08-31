@@ -16,7 +16,7 @@ object CowSayConfig {
         val Radius = Section.getDouble("radius")
         private val LinearSpeed = Section.getDouble("speed")
 
-        //Преобразуем ленейную скорость в блоках в угловую под наш радиус
+        //Преобразуем линейную скорость в блоках в угловую под наш радиус
         val AngularSpeed = (360 * (LinearSpeed / (2 * PI * Radius))).toFloat()
 
     }
